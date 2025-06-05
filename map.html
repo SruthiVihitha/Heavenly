@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Website Map</title>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAnmjLhHOG9-P4UHgVTvkHJ7YhYM5w2FpM&callback=initMap">
+    </script>
+  </head>
+  <body>
+    <div id="map" style="width: 600px; height: 400px;"></div>
+    <br>
+    Enter Location: <input type="text" id="locationInput">
+    <button onclick="geocodeLocation()">Search</button>
+
+    <script>
+      var map;
+      var geocoder;
+
+      function initMap() {
+        geocoder = new google.maps.Geocoder();
+        map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: { lat: -33.8688, lng: 151.2093 } // Initial center (Sydney, Australia)
+        });
+      }
+
+      function geocodeLocation() {
+        var address = document.getElementById("locationInput").value;
+        geocoder.geocode({ 'address': address }, function(results, status) {
+          if (status === 'OK') {
+            map.setCenter(results[0].geometry.location);
+            map.setZoom(15); // Adjust zoom level as needed
+          } else {
+            alert("Geocode was not successful for the following reason: " + status);
+          }
+        });
+      }
+    </script>
+  </body>
+</html>

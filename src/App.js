@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { useState } from "react";
+import background from "./background/background";
+const App = () => {
+  let heroData =[
+    {text1:"Tranquil Escapes",text2:"Unwind Revive"},
+    {text1:"SwiftFix Solutions",text2:"Mend Maintain Modernize"},
+    {text1:"Sparkle Squad",text2:"Shine Sanitize Simplify"},
+  ]
+  const [heroCount,setHeroCount]= useState(2);
+  const[playStatus,setPlayStatus]= useState(false);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <background playStatus={playStatus} heroCount={heroCount}/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
